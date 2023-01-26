@@ -8,6 +8,8 @@ h1{
     background-color: gray;
     font-weight: 700;
     font-size: 55px;
+    font-family: cursive;
+
 }
 
 table{
@@ -46,7 +48,8 @@ table td{
     font-weight: bold;
     color: rgb(246, 254, 0);
     background-color: gray;
-    
+    font-family: cursive;
+
 }
 .restart-game{
     max-width: 300px;
@@ -73,13 +76,13 @@ table td{
 }
 .info{
     width: 300px;
-    height:50px;
+    height:120px;
     margin-left: 27.25%;
     background-color: gray;
-    text-align: left;
-    align-self: center;
     margin-left: 40%;
     font-size: 30px;
+    border-radius: 5px;
+
 
 }
 
@@ -92,5 +95,20 @@ top: 220px;
     font-size: 25px;
     margin-left: 25px;
     align-self: center;
+    font-family: cursive;
 
+
+}
+.stoper{
+   margin: auto;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 22px;
+    margin-right: 20px;
+    font-family: cursive;
+}
+.life{
+    
+    font-family: cursive;
+ 
 }
