@@ -1,0 +1,81 @@
+body{
+    box-sizing: border-box;
+    background-image: url("/img/mines.jpg");
+    /* background-repeat: no-repeat; */
+}
+h1{
+    text-align: center;
+    color: rgb(246, 254, 0);
+    background-color: gray;
+    font-weight: 700;
+    font-size: 55px;
+}
+.container{
+    margin: auto;
+    max-width: 900px;
+}
+table{
+    position: absolute;
+    left: 26%;
+    margin: auto;
+    width: 50%;
+}
+table td{
+    margin: auto;
+    width: 40px;
+    height: 40px;
+
+    border: 2px solid black;
+    color: rgb(226, 10, 21);
+    background-color: rgb(125, 122, 119);
+
+    text-align: center;
+    font-weight: bold;
+   
+}
+.level-panel{
+    max-width: 500px;
+
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-bottom: 0px;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(246, 254, 0);
+    background-color: gray;
+    /* border-radius: 15px,15px; */
+    /* background-color: rgb(159, 156, 151); */
+}
+.restart-game{
+    margin-left: 15%;
+    margin-right: 15%;
+    text-align: center;
+    font-size: 35px;
+    background-color: gray;
+
+}
+.info{
+    font-size: 25px;
+    margin: auto;
+    max-width: 285px;
+    background-color: gray;
+    margin-top: 190px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.flag{
+    margin-top: 20px;
+    margin-right: 5px;
+}
+.shown{
+    margin-left: 10px;
+}
+.danger-mines{
+position: fixed;
+;
+      
+}

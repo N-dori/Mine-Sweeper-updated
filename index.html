@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body onload="onInit()">
+    <h1>Mine Sweeper</h1>
+    <div class="container">
+        <div class="level-panel"><span><a onclick="changeLevel(4)">Easy</a></span>
+            <span><a onclick="changeLevel(6)">Medium</a></span>
+            <span><a onclick="changeLevel(8)">Hard</a></span>
+        </div>
+
+        <div class="restart-game"><span class="smailey" onclick="handelNewGame()">😁</span></div>
+
+        <table>
+            <img class="danger-mines" src="img/danger mines.jpg">
+            <tbody class="board"></tbody>
+        </table>
+        <div class="info">
+            <div > Cleared:<span class="shown">0</span> </div>
+            <div class="flag"> 🚩:<span>0</span></div>
+        </div>
+
+        <script src="js/main.js"></script>
+</body>
+
+</html>
