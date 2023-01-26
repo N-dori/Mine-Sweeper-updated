@@ -10,24 +10,32 @@
 </head>
 
 <body onload="onInit()">
-    <h1>Mine Sweeper</h1>
-    <div class="container">
-        <div class="level-panel"><span><a onclick="changeLevel(4)">Easy</a></span>
+
+    <h1>Mine Sweeper</h1> 
+
+    <div class="game"> 
+           <div class="level-panel">
+            <span><a onclick="changeLevel(4)">Easy</a></span>
             <span><a onclick="changeLevel(6)">Medium</a></span>
             <span><a onclick="changeLevel(8)">Hard</a></span>
         </div>
-
-        <div class="restart-game"><span class="smailey" onclick="handelNewGame()">😁</span></div>
-
-        <table>
-            <img class="danger-mines" src="img/danger mines.jpg">
-            <tbody class="board"></tbody>
-        </table>
-        <div class="info">
-            <div > Cleared:<span class="shown">0</span> </div>
-            <div class="flag"> 🚩:<span>0</span></div>
+        <div class="restart-game"><span class="smailey" onclick="handelNewGame()">😁
+        </span> 
         </div>
+           <table>
+         
+            <tbody class="board">  </tbody>
+          
+        </table>
+        <div class="info">🚩:<span class="counter">0</span></div>
+        <img class = "img" src="img/danger mines.jpg">
+   </div>
+     
 
+     
+
+
+<div class="footer">Nadav Dori</div>
         <script src="js/main.js"></script>
 </body>
 

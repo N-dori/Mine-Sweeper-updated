@@ -1,7 +1,6 @@
 body{
     box-sizing: border-box;
-    background-image: url("/img/mines.jpg");
-    /* background-repeat: no-repeat; */
+    background-color: rgb(236, 152, 152);
 }
 h1{
     text-align: center;
@@ -10,34 +9,35 @@ h1{
     font-weight: 700;
     font-size: 55px;
 }
-.container{
-    margin: auto;
-    max-width: 900px;
-}
+
 table{
-    position: absolute;
-    left: 26%;
-    margin: auto;
+    margin-left: 40%;
+    margin-right: 40%;
+    max-width: 300px;
+    max-height: 300px;
+
+    left: 36%;
     width: 50%;
 }
 table td{
-    margin: auto;
-    width: 40px;
-    height: 40px;
+    max-width: 10px;
+    width:8px;
+    height:40px;
 
     border: 2px solid black;
-    color: rgb(226, 10, 21);
+    color: rgb(132, 7, 13);
     background-color: rgb(125, 122, 119);
-
+    font-size: 16px;
     text-align: center;
-    font-weight: bold;
+    border-radius: 10px;
+
    
 }
 .level-panel{
-    max-width: 500px;
-
-    margin-left: 15%;
-    margin-right: 15%;
+    max-width: 300px;
+    min-width: 300px;
+    margin-left: 40%;
+    margin-right: 40%;
     margin-bottom: 0px;
     display: flex;
     justify-content: space-between;
@@ -46,36 +46,51 @@ table td{
     font-weight: bold;
     color: rgb(246, 254, 0);
     background-color: gray;
-    /* border-radius: 15px,15px; */
-    /* background-color: rgb(159, 156, 151); */
+    
 }
 .restart-game{
-    margin-left: 15%;
-    margin-right: 15%;
+    max-width: 300px;
+    min-width: 300px;
+
+    margin-left: 40%;
+    margin-right: 40%;
     text-align: center;
     font-size: 35px;
     background-color: gray;
 
 }
-.info{
-    font-size: 25px;
-    margin: auto;
-    max-width: 285px;
+
+
+
+.footer{
+    max-width: 300px;
+    max-height: 300px;
+    width: 100px;
     background-color: gray;
-    margin-top: 190px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    margin-top: 150px;
+    font-size: 20px;
+  
 }
-.flag{
-    margin-top: 20px;
-    margin-right: 5px;
+.info{
+    width: 300px;
+    height:50px;
+    margin-left: 27.25%;
+    background-color: gray;
+    text-align: left;
+    align-self: center;
+    margin-left: 40%;
+    font-size: 30px;
+
 }
-.shown{
-    margin-left: 10px;
+
+.img{
+position: absolute;
+top: 220px;
+    
 }
-.danger-mines{
-position: fixed;
-;
-      
+.counter{
+    font-size: 25px;
+    margin-left: 25px;
+    align-self: center;
+
 }

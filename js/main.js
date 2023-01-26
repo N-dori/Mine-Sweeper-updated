@@ -40,8 +40,8 @@ function changeLevel(num) {
         gLevel.size = num
         gLevel.mines = (num ** 2) / 3
     }
-    onInit()
     handelNewGame()
+    onInit()
 }
 function checkvictory() {
     var mineMarked = 0
@@ -108,23 +108,24 @@ function handelGameOver() {
 }
 
 function handelRightclick(elCell) {
-    var elMarkCounter = document.querySelector('.flag span')
+    console.log('gBord',gBoard);
+
+    var elMarkedCounter = document.querySelector('.counter')
     var i = +elCell.dataset.i
     var j = +elCell.dataset.j
     var currPos = gBoard[i][j]
-
-
-    if (gBoard[i][j].isMarked) {
+    if(currPos.isShown===true)return
+    if (currPos.isMarked) {
         currPos.isMarked = false
         elCell.innerHTML = ""
         gGame.markedCount--
-        elMarkCounter.innerHTML = +gGame.markedCount
+        elMarkedCounter.innerHTML = +gGame.markedCount
     } else {
         currPos.isMarked = true
         elCell.innerHTML = FLAG
         gGame.markedCount++
 
-        elMarkCounter.innerHTML = +gGame.markedCount
+        elMarkedCounter.innerHTML = +gGame.markedCount
     }
 }
 
@@ -149,27 +150,28 @@ function cellClicked(elCell) {
     checkvictory()
 }
 function expandShown(board, elCell, rowIdx, colIdx) {
-    var elShownCounter = document.querySelector('.shown')
+    
     if (board[rowIdx][colIdx].minesAroundCount === EMPTY) {
         for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
             if (i < 0 || i >= board.length) continue
             for (var j = colIdx - 1; j <= colIdx + 1; j++) {
                 if (i === rowIdx && j === colIdx) continue
                 if (j < 0 || j >= board.length) continue
-                gGame.shownCount++
                 if (board[i][j].isMine) continue
-                if (board[i][j].minesAroundCount !== EMPTY) {
+                gGame.shownCount++
+                if (board[i][j].minesAroundCount !== MINE) {
                     var elcell = document.querySelector(`.cell-${i}-${j}`)
                     elcell.innerHTML = board[i][j].minesAroundCount
+                    board[i][j].isShown = true
                 }
-                board[i][j].isShown = true
+                
                 var elcell = document.querySelector(`.cell-${i}-${j}`)
                 elcell.style.backgroundColor = 'lightgray'
                 console.log('board[i][j].isShown', board[i][j].isShown);
             }
         }
     }
-    elShownCounter.innerHTML = gGame.shownCount
+   
 
 }
 
@@ -247,7 +249,6 @@ function buildBoard() {
 function setMinesOnBoard(board) {
 
     for (let i = 0; i < gLevel.mines; i++) {
-        console.log('gLevel.mines', gBoard.mines);
         board[getRandomInt(0, board.length)][getRandomInt(0, board.length)].isMine = true
 
     }
