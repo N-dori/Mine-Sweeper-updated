@@ -14,7 +14,7 @@ function renderBoard(size) {
 
             const className = `cell cell-${i}-${j}`
             strHTML += `<td data-i="${i}" data-j="${j} "class="${className}"
-             onclick="cellClicked(this)"oncontextmenu="handelRightclick(this)" >
+             onclick="cellClicked(this),lastClicked(this)"oncontextmenu="handelRightclick(this)" >
             </td>`
 
         }
@@ -75,17 +75,5 @@ function restartTimer() {
     var elStoper = document.querySelector('.stoper')
     elStoper.innerText = `   00:00:00`
 }
-// --------------- mouse events----------------------------
-document.addEventListener('contextmenu', function (event) {
-    event.preventDefault();
-}, true);
-document.addEventListener('mousedown', function () {
-    var elsmailey = document.querySelector('.smailey')
-    elsmailey.innerHTML = SCERED
-});
-document.addEventListener('mouseup', function () {
-    var elsmailey = document.querySelector('.smailey')
-    elsmailey.innerHTML = HAPPY
-});
 
 

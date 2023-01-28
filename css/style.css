@@ -1,6 +1,7 @@
 body {
     box-sizing: border-box;
     background-color: rgb(236, 152, 152);
+    margin: 0;
 }
 
 h1 {
@@ -70,12 +71,12 @@ table {
 
 
 .footer {
-    max-width: 300px;
-    max-height: 300px;
-    width: 100px;
+position: relative;
+bottom: 28px;
+    width: 120px;
     background-color: gray;
-    margin-top: 150px;
-    font-size: 20px;
+    margin-top: 0px;
+    font-size: 22px;
 
 }
 
@@ -91,7 +92,8 @@ table {
 
 .img {
     position: absolute;
-    top: 220px;
+    top: 270px;
+    left: 35px
 
 }
 
@@ -114,7 +116,17 @@ table {
 }
 
 .life {
-
     font-family: cursive;
+}
+.hint{
+    position: absolute;
+    top:120px;
+    left: 35px;
+    width: 90px;
+    height: 90px;
+    background-color: gray;
+    text-align: center;
+    font-size: 60px;
+    border-radius: 15px;
 
 }

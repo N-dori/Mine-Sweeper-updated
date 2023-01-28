@@ -9,6 +9,14 @@ const HAPPY = "😁"
 const SAD = "😞"
 var LIFE = 3
 var gIsFirstClick = true
+var gHint = {
+    lastCellClicked: { i: 0, j: 0 },
+    isHintOn: false,
+    count: 3
+
+}
+
+var hintInterval
 
 
 
@@ -35,18 +43,21 @@ function onInit() {
 
 }
 function cellClicked(elCell) {
-
     var elLifeCouner = document.querySelector('.life')
-
     if (gGame.isOn) return
- // first make sure that you can't hit  a cell that is marked or shown   
+    if (gHint.isHintOn) {
+        exposeNegs(elCell)
+        return
+    }
+    // first make sure that you can't hit  a cell that is marked or shown   
     var i = +elCell.dataset.i
     var j = +elCell.dataset.j
+    // update gLastCellClicked with the recent cell clicked for the hint
     var currPos = board[i][j]
     if (currPos.isShown) return
     if (currPos.isMarked) return
 
-// case its is a mine decreace life color cell borded in red for a secound
+    // case its is a mine decreace life color cell borded in red for a secound
     if (currPos.isMine) {
         exposion.play()
         LIFE--
@@ -59,9 +70,9 @@ function cellClicked(elCell) {
             handelGameOver()
         }
     } else {
-// if it is a first click
+        // if it is a first click
         handelFistClick(board, i, j)
-// if it is not a first click        
+        // if it is not a first click        
         expandShown(board, i, j)
 
     }
@@ -108,12 +119,12 @@ function expandShown(board, rowIdx, colIdx) {
         for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
             if (i < 0 || i >= board.length) continue
             for (var j = colIdx - 1; j <= colIdx + 1; j++) {
-    // normaly here we check that it is not the cell himself, however in this point  there is no need because that is the first condition we check 
+                // normaly here we check that it is not the cell himself, however in this point  there is no need because that is the first condition we check 
                 if (j < 0 || j >= board.length) continue
                 var nextCellExpose = board[i][j]
-    // if the cell is marked skip it            
+                // if the cell is marked skip it            
                 if (nextCellExpose.isMarked) continue
-    // update the MODEL and DOM            
+                // update the MODEL and DOM            
                 var elCell = document.querySelector(`.cell-${i}-${j}`)
                 elCell.innerHTML = nextCellExpose.minesAroundCount
                 elCell.style.backgroundColor = 'lightgray'
@@ -123,7 +134,7 @@ function expandShown(board, rowIdx, colIdx) {
             }
         }
     } else {
-// if this cell has mines Negs this revel only that one        
+        // if this cell has mines Negs this revel only that one        
         elCell.innerHTML = currPos.minesAroundCount
         elCell.style.backgroundColor = 'lightgray'
         currPos.isShown = true
@@ -144,7 +155,7 @@ function handelFistClick(board, i, j) {
         for (let i = 0; i < board.length; i++) {
             for (let j = 0; j < board[i].length; j++) {
                 var currPos = board[i][j]
-// here we set value for how many Negs mines this cell has                 
+                // here we set value for how many Negs mines this cell has                 
                 if (!currPos.isMine) {
                     currPos.minesAroundCount = setMinesNegsCount(board, i, j)
                 }
@@ -201,7 +212,7 @@ function setMinesOnBoard(board, i, j) {
 
         }
     }
-// update the DOM
+    // update the DOM
     var elcounater = document.querySelector('.counter')
     elcounater.innerHTML = gGame.markedCountForDisplay
     return
@@ -236,7 +247,7 @@ function changeLevel(num) {
 
         gLevel.size = num
         gLevel.mines = num + 2
-      
+
     }
     else if (num === 12) {
         gLevel.size = num
@@ -247,9 +258,9 @@ function changeLevel(num) {
     onInit()
 }
 function checkvictory() {
-//  chack how many are marked. And how many are marked and mines
-//then check is the intial number of mines maches these who are mine and marked
-//  one more thing chack if ther is no more marked cells than the intial number of mines
+    //  chack how many are marked. And how many are marked and mines
+    //then check is the intial number of mines maches these who are mine and marked
+    //  one more thing chack if ther is no more marked cells than the intial number of mines
     var minesAndMarked = 0
     var markedCells = 0
     for (let i = 0; i < board.length; i++) {
@@ -272,6 +283,7 @@ function checkvictory() {
 function resetVariblsModelAndDom() {
 
     LIFE = 3
+    gHint.count=3
     gGame.markedCountForDisplay = 0
     gGame.markedCountForVictory = 0
     gGame.shownCount = 0
@@ -296,7 +308,79 @@ function resetVariblsModelAndDom() {
 
     }
 }
+function toggelHint(el) {
 
+    if (!gHint.isHintOn) {
+        if (gHint.count === 0) return
+ 
+        gHint.isHintOn = true
+        el.style.backgroundColor = 'yellow'
+    } else {
+        gHint.isHintOn = false
+        el.style.backgroundColor = 'gray'
+
+    }
+}
+
+function exposeNegs(el) {
+    lastClicked(el)
+    // chack if hint is on ?
+    if (gHint.isHintOn) {
+        // save in to this array all the locations that we expose       
+        var exposedCells = []
+        // get the the location of the last cell clicked
+        var rowIdx = gHint.lastCellClicked.i
+        var colIdx = gHint.lastCellClicked.j
+        console.log('gHint.lastCellClicked.i', gHint.lastCellClicked.i);
+        console.log('gHint.lastCellClicked.j', gHint.lastCellClicked.j);
+        // Neg loop to expose them all for one second
+        for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
+            if (i < 0 || i >= board.length) continue
+            for (var j = colIdx - 1; j <= colIdx + 1; j++) {
+                // if (i === rowIdx && j === colIdx) continue-- no need to skip 'this'
+                if (j < 0 || j >= board.length) continue
+                var currPos = board[i][j]
+                if (currPos.isShown) continue
+
+                var elCell = document.querySelector(`.cell-${i}-${j}`)
+                exposedCells.push({ i: i, j: j })
+                elCell.style.backgroundColor = 'pink'
+                elCell.innerHTML = currPos.minesAroundCount
+                if (currPos.isMine) elCell.innerHTML = MINE
+
+            }
+        }
+        gHint.count--
+
+        setTimeout(() => {
+            var elHint=document.querySelector('.hint')
+            for (let i = 0; i < exposedCells.length; i++) {
+
+                var row = exposedCells[i].i
+                var col = exposedCells[i].j
+
+                var elCell1 = document.querySelector(`.cell-${row}-${col}`)
+                elCell1.style.backgroundColor = 'gray'
+                elCell1.innerHTML = EMPTY
+                elHint.style.backgroundColor='gray'
+                gHint.isHintOn = false
+            }
+
+
+        }, 1000);
+    }
+    console.log('gHint.count--', gHint.count);
+
+}
+function lastClicked(elCell) {
+    var i = +elCell.dataset.i
+    var j = +elCell.dataset.j
+    console.log('i', i, 'j', j);
+
+    gHint.lastCellClicked.i = i
+    gHint.lastCellClicked.j = j
+
+}
 function handelNewGame() {
     restartTimer()
     resetVariblsModelAndDom()
@@ -322,4 +406,17 @@ function handelGameOver() {
     }
 
 }
+// --------------- mouse events----------------------------
+document.addEventListener('contextmenu', function (event) {
+    event.preventDefault();
+}, true);
+document.addEventListener('mousedown', function () {
+    var elsmailey = document.querySelector('.smailey')
+    elsmailey.innerHTML = SCERED
+});
+document.addEventListener('mouseup', function () {
+    var elsmailey = document.querySelector('.smailey')
+    elsmailey.innerHTML = HAPPY
+});
+
 
