@@ -120,13 +120,19 @@ bottom: 28px;
 }
 .hint{
     position: absolute;
-    top:120px;
+    top:36px;
     left: 35px;
-    width: 90px;
-    height: 90px;
+    width: 78px;
+    height: 78px;
     background-color: gray;
     text-align: center;
     font-size: 60px;
     border-radius: 15px;
 
+}
+.text{
+    position: absolute;
+    top:15px;
+    left: 58px;
+    width: 120px;
 }

@@ -309,7 +309,7 @@ function resetVariblsModelAndDom() {
     }
 }
 function toggelHint(el) {
-
+    if(gIsFirstClick)return
     if (!gHint.isHintOn) {
         if (gHint.count === 0) return
  
@@ -369,13 +369,11 @@ function exposeNegs(el) {
 
         }, 1000);
     }
-    console.log('gHint.count--', gHint.count);
 
 }
 function lastClicked(elCell) {
     var i = +elCell.dataset.i
     var j = +elCell.dataset.j
-    console.log('i', i, 'j', j);
 
     gHint.lastCellClicked.i = i
     gHint.lastCellClicked.j = j
