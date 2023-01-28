@@ -1,8 +1,9 @@
-body{
+body {
     box-sizing: border-box;
     background-color: rgb(236, 152, 152);
 }
-h1{
+
+h1 {
     text-align: center;
     color: rgb(246, 254, 0);
     background-color: gray;
@@ -12,30 +13,32 @@ h1{
 
 }
 
-table{
+table {
     margin-left: 40%;
     margin-right: 40%;
-    max-width: 300px;
-    max-height: 300px;
-
-    left: 36%;
-    width: 50%;
+    /* max-width: 300px; */
+    /* max-height: 500px; */
+    width:300px ;
+    height: 300px;
 }
-table td{
-    max-width: 10px;
-    width:8px;
-    height:40px;
 
-    border: 2px solid black;
+.board td {
+    max-width: 10px;
+    width: 10px;
+    height: 10px;
+
+    border: 5px solid salmon;
     color: rgb(132, 7, 13);
     background-color: rgb(125, 122, 119);
-    font-size: 16px;
-    text-align: center;
-    border-radius: 10px;
 
-   
+    font-size: 10px;
+    text-align: center;
+    border-radius: 2px;
+
+
 }
-.level-panel{
+
+.level-panel {
     max-width: 300px;
     min-width: 300px;
     margin-left: 40%;
@@ -51,7 +54,8 @@ table td{
     font-family: cursive;
 
 }
-.restart-game{
+
+.restart-game {
     max-width: 300px;
     min-width: 300px;
 
@@ -65,33 +69,33 @@ table td{
 
 
 
-.footer{
+.footer {
     max-width: 300px;
     max-height: 300px;
     width: 100px;
     background-color: gray;
     margin-top: 150px;
     font-size: 20px;
-  
+
 }
-.info{
+
+.info {
     width: 300px;
-    height:120px;
+    height: 120px;
     margin-left: 27.25%;
     background-color: gray;
     margin-left: 40%;
     font-size: 30px;
     border-radius: 5px;
+}
 
+.img {
+    position: absolute;
+    top: 220px;
 
 }
 
-.img{
-position: absolute;
-top: 220px;
-    
-}
-.counter{
+.counter {
     font-size: 25px;
     margin-left: 25px;
     align-self: center;
@@ -99,16 +103,18 @@ top: 220px;
 
 
 }
-.stoper{
-   margin: auto;
+
+.stoper {
+    margin: auto;
     border-radius: 5px;
     text-align: center;
     font-size: 22px;
     margin-right: 20px;
     font-family: cursive;
 }
-.life{
-    
+
+.life {
+
     font-family: cursive;
- 
+
 }
