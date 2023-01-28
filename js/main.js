@@ -309,6 +309,7 @@ function resetVariblsModelAndDom() {
     }
 }
 function toggelHint(el) {
+    if(gGame.isOn)return
     if(gIsFirstClick)return
     if (!gHint.isHintOn) {
         if (gHint.count === 0) return
